@@ -1,0 +1,877 @@
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.22:5000
+Press CTRL+C to quit
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 612-162-592
+ * Detected change in 'C:\\Users\\T430\\Desktop\\studenthub\\backend\\app.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 612-162-592
+ * Detected change in 'C:\\Users\\T430\\Desktop\\studenthub\\backend\\scripts\\test_auth.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 612-162-592
+ * Detected change in 'C:\\Users\\T430\\Desktop\\studenthub\\backend\\app.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 612-162-592
+ * Detected change in 'C:\\Users\\T430\\Desktop\\studenthub\\backend\\app.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 612-162-592
+ * Detected change in 'C:\\Users\\T430\\Desktop\\studenthub\\backend\\app.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 612-162-592
+ * Detected change in 'C:\\Users\\T430\\Desktop\\studenthub\\backend\\config.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 612-162-592
+ * Detected change in 'C:\\Users\\T430\\Desktop\\studenthub\\backend\\routes\\student.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 612-162-592
+ * Detected change in 'C:\\Users\\T430\\Desktop\\studenthub\\backend\\utils.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 612-162-592
+ * Detected change in 'C:\\Users\\T430\\Desktop\\studenthub\\backend\\routes\\student.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 612-162-592
+ * Detected change in 'C:\\Users\\T430\\Desktop\\studenthub\\backend\\config.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 612-162-592
+127.0.0.1 - - [26/Dec/2025 16:14:59] "OPTIONS /auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:14:59] "POST /auth/login HTTP/1.1" 401 -
+ * Detected change in 'C:\\Users\\T430\\Desktop\\studenthub\\backend\\utils.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 612-162-592
+ * Detected change in 'C:\\Users\\T430\\Desktop\\studenthub\\backend\\scripts\\check_admin.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 612-162-592
+127.0.0.1 - - [26/Dec/2025 16:17:14] "OPTIONS /auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:17:14] "POST /auth/login HTTP/1.1" 401 -
+127.0.0.1 - - [26/Dec/2025 16:17:28] "OPTIONS /auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:17:30] "POST /auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:17:30] "OPTIONS /auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:17:30] "GET /auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:17:30] "OPTIONS /admin/students HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:17:30] "OPTIONS /admin/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:17:30] "GET /admin/students HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:17:30] "GET /admin/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:17:37] "OPTIONS /admin/students HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:17:37] "GET /admin/students HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:17:39] "OPTIONS /admin/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:17:39] "GET /admin/students HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:17:39] "GET /admin/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:17:48] "OPTIONS /auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:17:49] "GET /auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:17:49] "OPTIONS /admin/students HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:17:49] "OPTIONS /admin/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:17:49] "GET /admin/students HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:17:49] "GET /admin/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:19:12] "OPTIONS /auth/signup HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:19:13] "POST /auth/signup HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:19:20] "GET /admin/students HTTP/1.1" 401 -
+127.0.0.1 - - [26/Dec/2025 16:19:26] "GET /admin/students HTTP/1.1" 401 -
+127.0.0.1 - - [26/Dec/2025 16:19:26] "GET /admin/uploads HTTP/1.1" 401 -
+127.0.0.1 - - [26/Dec/2025 16:19:29] "GET /admin/students HTTP/1.1" 401 -
+ * Detected change in 'C:\\Users\\T430\\Desktop\\studenthub\\backend\\routes\\admin.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 612-162-592
+127.0.0.1 - - [26/Dec/2025 16:20:15] "GET /admin/students HTTP/1.1" 401 -
+127.0.0.1 - - [26/Dec/2025 16:20:16] "GET /admin/students HTTP/1.1" 401 -
+127.0.0.1 - - [26/Dec/2025 16:20:19] "GET /admin/students HTTP/1.1" 401 -
+127.0.0.1 - - [26/Dec/2025 16:20:21] "GET /admin/students HTTP/1.1" 401 -
+127.0.0.1 - - [26/Dec/2025 16:20:24] "GET /admin/students HTTP/1.1" 401 -
+ * Detected change in 'C:\\Users\\T430\\Desktop\\studenthub\\backend\\routes\\admin.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 612-162-592
+ * Detected change in 'C:\\Users\\T430\\Desktop\\studenthub\\backend\\routes\\admin.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 612-162-592
+ * Detected change in 'C:\\Users\\T430\\Desktop\\studenthub\\backend\\routes\\admin.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 612-162-592
+127.0.0.1 - - [26/Dec/2025 16:20:49] "GET /admin/students HTTP/1.1" 401 -
+127.0.0.1 - - [26/Dec/2025 16:22:20] "OPTIONS /auth/signup HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:22:21] "POST /auth/signup HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:22:30] "GET /admin/students HTTP/1.1" 401 -
+127.0.0.1 - - [26/Dec/2025 16:22:30] "GET /admin/uploads HTTP/1.1" 401 -
+127.0.0.1 - - [26/Dec/2025 16:22:56] "OPTIONS /auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:22:57] "POST /auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:22:57] "OPTIONS /auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:22:58] "GET /auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:22:58] "OPTIONS /admin/students HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:22:58] "OPTIONS /admin/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:22:58] "GET /admin/students HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:22:58] "GET /admin/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:23:02] "GET /admin/students HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:23:11] "OPTIONS /admin/students/09a6778a-322a-4f1f-8b0d-833c987369b5/suspend HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:23:11] "POST /admin/students/09a6778a-322a-4f1f-8b0d-833c987369b5/suspend HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:23:11] "OPTIONS /admin/students HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:23:12] "GET /admin/students HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:23:30] "OPTIONS /admin/students/1e3761c0-e22c-4a17-a437-fc26120d7092/approve HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:23:30] "POST /admin/students/1e3761c0-e22c-4a17-a437-fc26120d7092/approve HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:23:31] "OPTIONS /admin/students HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:23:31] "GET /admin/students HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:24:12] "OPTIONS /auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:24:13] "POST /auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:24:13] "OPTIONS /auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:24:14] "GET /auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:24:14] "OPTIONS /student/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:24:14] "GET /student/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:25:56] "OPTIONS /student/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:25:57] "POST /student/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:25:57] "GET /student/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:26:03] "OPTIONS /admin/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:26:03] "GET /admin/uploads HTTP/1.1" 403 -
+127.0.0.1 - - [26/Dec/2025 16:26:07] "OPTIONS /admin/students HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:26:07] "GET /admin/uploads HTTP/1.1" 403 -
+127.0.0.1 - - [26/Dec/2025 16:26:07] "GET /admin/students HTTP/1.1" 403 -
+127.0.0.1 - - [26/Dec/2025 16:26:11] "OPTIONS /admin/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:26:12] "GET /admin/uploads HTTP/1.1" 403 -
+127.0.0.1 - - [26/Dec/2025 16:26:16] "OPTIONS /admin/students HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:26:16] "GET /admin/students HTTP/1.1" 403 -
+127.0.0.1 - - [26/Dec/2025 16:26:17] "OPTIONS /admin/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:26:18] "GET /admin/uploads HTTP/1.1" 403 -
+127.0.0.1 - - [26/Dec/2025 16:26:20] "GET /admin/students HTTP/1.1" 403 -
+127.0.0.1 - - [26/Dec/2025 16:26:20] "GET /admin/uploads HTTP/1.1" 403 -
+127.0.0.1 - - [26/Dec/2025 16:26:22] "OPTIONS /admin/students HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:26:22] "GET /admin/students HTTP/1.1" 403 -
+127.0.0.1 - - [26/Dec/2025 16:26:41] "OPTIONS /admin/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:26:42] "GET /admin/uploads HTTP/1.1" 403 -
+ * Detected change in 'C:\\Users\\T430\\Desktop\\studenthub\\backend\\routes\\auth.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 612-162-592
+127.0.0.1 - - [26/Dec/2025 16:28:10] "OPTIONS /admin/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:28:10] "OPTIONS /auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:28:10] "OPTIONS /auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:28:10] "GET /admin/uploads HTTP/1.1" 403 -
+127.0.0.1 - - [26/Dec/2025 16:28:10] "GET /auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:28:11] "GET /auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:28:11] "OPTIONS /student/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:28:11] "GET /student/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:28:23] "OPTIONS /student/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:28:24] "OPTIONS /auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:28:24] "GET /student/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:28:24] "GET /auth/me HTTP/1.1" 200 -
+ * Detected change in 'C:\\Users\\T430\\Desktop\\studenthub\\backend\\routes\\student.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 612-162-592
+127.0.0.1 - - [26/Dec/2025 16:28:31] "OPTIONS /student/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:28:31] "GET /student/uploads HTTP/1.1" 200 -
+ * Detected change in 'C:\\Users\\T430\\Desktop\\studenthub\\backend\\routes\\admin.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 612-162-592
+ * Detected change in 'C:\\Users\\T430\\Desktop\\studenthub\\backend\\routes\\admin.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 612-162-592
+ * Detected change in 'C:\\Users\\T430\\Desktop\\studenthub\\backend\\routes\\admin.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 612-162-592
+ * Detected change in 'C:\\Users\\T430\\Desktop\\studenthub\\backend\\routes\\auth.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 612-162-592
+127.0.0.1 - - [26/Dec/2025 16:29:02] "OPTIONS /student/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:29:02] "GET /student/uploads HTTP/1.1" 200 -
+ * Detected change in 'C:\\Users\\T430\\Desktop\\studenthub\\backend\\routes\\auth.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 612-162-592
+127.0.0.1 - - [26/Dec/2025 16:29:09] "OPTIONS /auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:29:09] "OPTIONS /student/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:29:09] "OPTIONS /auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:29:10] "GET /student/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:29:10] "GET /auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:29:10] "GET /auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:29:10] "GET /student/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:29:10] "GET /student/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:29:20] "OPTIONS /student/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:29:20] "GET /student/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:29:36] "OPTIONS /auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:29:37] "GET /auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:29:37] "OPTIONS /student/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:29:37] "GET /student/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:29:47] "OPTIONS /auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:29:47] "GET /auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:29:47] "OPTIONS /student/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:29:47] "GET /student/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:30:03] "OPTIONS /auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:30:03] "GET /auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:30:03] "OPTIONS /student/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:30:04] "GET /student/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:30:15] "OPTIONS /student/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:30:15] "GET /student/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:31:32] "OPTIONS /auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:31:33] "POST /auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:31:33] "OPTIONS /auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:31:33] "GET /auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:31:33] "OPTIONS /admin/students HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:31:34] "OPTIONS /admin/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:31:34] "GET /admin/students HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:31:34] "GET /admin/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:31:42] "OPTIONS /admin/students HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:31:43] "GET /admin/students HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:31:50] "OPTIONS /admin/students HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:31:50] "OPTIONS /admin/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:31:51] "GET /admin/students HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:31:51] "GET /admin/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:31:53] "GET /admin/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:38:14] "OPTIONS /admin/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:38:14] "GET /admin/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:38:23] "OPTIONS /admin/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:38:23] "GET /admin/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:38:27] "GET /admin/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:38:32] "OPTIONS /admin/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:38:32] "GET /admin/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:38:59] "OPTIONS /admin/uploads/56feecfa-81c5-410e-a10c-eeb0beee9d87/status HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:39:00] "POST /admin/uploads/56feecfa-81c5-410e-a10c-eeb0beee9d87/status HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:39:08] "OPTIONS /auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:39:08] "GET /auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:39:08] "OPTIONS /admin/students HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:39:09] "OPTIONS /admin/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:39:09] "GET /admin/students HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:39:09] "GET /admin/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:39:14] "OPTIONS /admin/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:39:14] "GET /admin/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:39:36] "OPTIONS /admin/students HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:39:36] "GET /admin/students HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:39:53] "OPTIONS /admin/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:39:54] "GET /admin/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:40:13] "OPTIONS /auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:40:14] "POST /auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:40:14] "OPTIONS /auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:40:14] "GET /auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:40:15] "OPTIONS /student/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:40:15] "GET /student/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:40:22] "OPTIONS /student/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:40:23] "GET /student/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:40:33] "OPTIONS /student/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:40:33] "GET /student/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:41:32] "OPTIONS /student/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:41:33] "GET /student/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:41:35] "GET /student/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:41:47] "OPTIONS /student/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:41:47] "GET /student/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:42:00] "OPTIONS /student/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:42:00] "GET /student/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:43:47] "OPTIONS /admin/students HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:43:47] "OPTIONS /admin/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:43:47] "GET /admin/students HTTP/1.1" 403 -
+127.0.0.1 - - [26/Dec/2025 16:43:47] "GET /admin/uploads HTTP/1.1" 403 -
+127.0.0.1 - - [26/Dec/2025 16:43:51] "GET /admin/students HTTP/1.1" 403 -
+127.0.0.1 - - [26/Dec/2025 16:44:02] "OPTIONS /admin/students HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:44:02] "OPTIONS /admin/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:44:03] "GET /admin/students HTTP/1.1" 403 -
+127.0.0.1 - - [26/Dec/2025 16:44:03] "GET /admin/uploads HTTP/1.1" 403 -
+127.0.0.1 - - [26/Dec/2025 16:44:05] "GET /admin/uploads HTTP/1.1" 403 -
+127.0.0.1 - - [26/Dec/2025 16:44:07] "GET /admin/students HTTP/1.1" 403 -
+127.0.0.1 - - [26/Dec/2025 16:44:12] "OPTIONS /admin/students HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:44:13] "OPTIONS /admin/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:44:13] "GET /admin/students HTTP/1.1" 403 -
+127.0.0.1 - - [26/Dec/2025 16:44:13] "GET /admin/uploads HTTP/1.1" 403 -
+127.0.0.1 - - [26/Dec/2025 16:44:18] "OPTIONS /student/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:44:18] "GET /student/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 16:44:22] "GET /student/uploads HTTP/1.1" 200 -
+ * Detected change in 'C:\\Users\\T430\\Desktop\\studenthub\\backend\\routes\\auth.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 612-162-592
+ * Detected change in 'C:\\Users\\T430\\Desktop\\studenthub\\backend\\routes\\auth.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 612-162-592
+127.0.0.1 - - [26/Dec/2025 17:14:36] "OPTIONS /auth/signup HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 17:14:37] "POST /auth/signup HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 17:15:21] "OPTIONS /auth/forgot-password HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 17:15:22] "POST /auth/forgot-password HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 17:16:16] "OPTIONS /auth/reset-password HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 17:16:16] "POST /auth/reset-password HTTP/1.1" 404 -
+ * Detected change in 'C:\\Users\\T430\\Desktop\\studenthub\\backend\\models.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 612-162-592
+127.0.0.1 - - [26/Dec/2025 17:26:17] "OPTIONS /auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 17:26:17] "POST /auth/login HTTP/1.1" 500 -
+Traceback (most recent call last):
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ^
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: profiles.city
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\flask\app.py", line 2213, in __call__
+    return self.wsgi_app(environ, start_response)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\flask\app.py", line 2193, in wsgi_app
+    response = self.handle_exception(e)
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\flask\app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\flask\app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\T430\Desktop\studenthub\backend\routes\auth.py", line 66, in login
+    profile = Profile.query.filter_by(username=username).first()
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\orm\query.py", line 2759, in first
+    return self.limit(1)._iter().first()  # type: ignore
+           ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\orm\query.py", line 2857, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+    
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2351, in execute
+    return self._execute_internal(
+    
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2249, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+    
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\orm\context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+    
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1419, in execute
+    return meth(
+    
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 527, in _execute_on_connection
+    return connection._execute_clauseelement(
+    
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+    
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+    
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+    ^
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2363, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ^
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: profiles.city
+[SQL: SELECT profiles.id AS profiles_id, profiles.user_id AS profiles_user_id, profiles.username AS profiles_username, profiles.full_name AS profiles_full_name, profiles.email AS profiles_email, profiles.contact_number AS profiles_contact_number, profiles.college_name AS profiles_college_name, profiles.college_id AS profiles_college_id, profiles.city AS profiles_city, profiles.pincode AS profiles_pincode, profiles.college_email AS profiles_college_email, profiles.status AS profiles_status, profiles.avatar_url AS profiles_avatar_url, profiles.created_at AS profiles_created_at, profiles.updated_at AS profiles_updated_at 
+FROM profiles 
+WHERE profiles.username = ?
+ LIMIT ? OFFSET ?]
+[parameters: ('kiran123@example.com', 1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+ * Detected change in 'C:\\Users\\T430\\Desktop\\studenthub\\backend\\routes\\admin.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 612-162-592
+ * Detected change in 'C:\\Users\\T430\\Desktop\\studenthub\\backend\\routes\\admin.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 612-162-592
+127.0.0.1 - - [26/Dec/2025 17:29:19] "OPTIONS /auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 17:29:19] "POST /auth/login HTTP/1.1" 500 -
+Traceback (most recent call last):
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ^
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: profiles.city
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\flask\app.py", line 2213, in __call__
+    return self.wsgi_app(environ, start_response)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\flask\app.py", line 2193, in wsgi_app
+    response = self.handle_exception(e)
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\flask\app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\flask\app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\T430\Desktop\studenthub\backend\routes\auth.py", line 66, in login
+    profile = Profile.query.filter_by(username=username).first()
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\orm\query.py", line 2759, in first
+    return self.limit(1)._iter().first()  # type: ignore
+           ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\orm\query.py", line 2857, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+    
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2351, in execute
+    return self._execute_internal(
+    
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2249, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+    
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\orm\context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+    
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1419, in execute
+    return meth(
+    
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 527, in _execute_on_connection
+    return connection._execute_clauseelement(
+    
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+    
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+    
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+    ^
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2363, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ^
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: profiles.city
+[SQL: SELECT profiles.id AS profiles_id, profiles.user_id AS profiles_user_id, profiles.username AS profiles_username, profiles.full_name AS profiles_full_name, profiles.email AS profiles_email, profiles.contact_number AS profiles_contact_number, profiles.college_name AS profiles_college_name, profiles.college_id AS profiles_college_id, profiles.city AS profiles_city, profiles.pincode AS profiles_pincode, profiles.college_email AS profiles_college_email, profiles.status AS profiles_status, profiles.avatar_url AS profiles_avatar_url, profiles.created_at AS profiles_created_at, profiles.updated_at AS profiles_updated_at 
+FROM profiles 
+WHERE profiles.username = ?
+ LIMIT ? OFFSET ?]
+[parameters: ('kiran123', 1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+127.0.0.1 - - [26/Dec/2025 17:30:03] "OPTIONS /auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 17:30:03] "POST /auth/login HTTP/1.1" 500 -
+Traceback (most recent call last):
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ^
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: profiles.city
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\flask\app.py", line 2213, in __call__
+    return self.wsgi_app(environ, start_response)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\flask\app.py", line 2193, in wsgi_app
+    response = self.handle_exception(e)
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\flask\app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\flask\app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\T430\Desktop\studenthub\backend\routes\auth.py", line 66, in login
+    profile = Profile.query.filter_by(username=username).first()
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\orm\query.py", line 2759, in first
+    return self.limit(1)._iter().first()  # type: ignore
+           ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\orm\query.py", line 2857, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+    
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2351, in execute
+    return self._execute_internal(
+    
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2249, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+    
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\orm\context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+    
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1419, in execute
+    return meth(
+    
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 527, in _execute_on_connection
+    return connection._execute_clauseelement(
+    
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+    
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+    
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+    ^
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2363, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ^
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: profiles.city
+[SQL: SELECT profiles.id AS profiles_id, profiles.user_id AS profiles_user_id, profiles.username AS profiles_username, profiles.full_name AS profiles_full_name, profiles.email AS profiles_email, profiles.contact_number AS profiles_contact_number, profiles.college_name AS profiles_college_name, profiles.college_id AS profiles_college_id, profiles.city AS profiles_city, profiles.pincode AS profiles_pincode, profiles.college_email AS profiles_college_email, profiles.status AS profiles_status, profiles.avatar_url AS profiles_avatar_url, profiles.created_at AS profiles_created_at, profiles.updated_at AS profiles_updated_at 
+FROM profiles 
+WHERE profiles.username = ?
+ LIMIT ? OFFSET ?]
+[parameters: ('kiran123', 1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+ * Detected change in 'C:\\Users\\T430\\Desktop\\studenthub\\backend\\routes\\auth.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 612-162-592
+ * Detected change in 'C:\\Users\\T430\\Desktop\\studenthub\\backend\\routes\\auth.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 612-162-592
+127.0.0.1 - - [26/Dec/2025 17:32:28] "OPTIONS /auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 17:32:28] "POST /auth/login HTTP/1.1" 500 -
+Traceback (most recent call last):
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ^
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: profiles.city
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\flask\app.py", line 2213, in __call__
+    return self.wsgi_app(environ, start_response)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\flask\app.py", line 2193, in wsgi_app
+    response = self.handle_exception(e)
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\flask\app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\flask\app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\T430\Desktop\studenthub\backend\routes\auth.py", line 66, in login
+    profile = Profile.query.filter_by(username=username).first()
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\orm\query.py", line 2759, in first
+    return self.limit(1)._iter().first()  # type: ignore
+           ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\orm\query.py", line 2857, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+    
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2351, in execute
+    return self._execute_internal(
+    
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2249, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+    
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\orm\context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+    
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1419, in execute
+    return meth(
+    
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 527, in _execute_on_connection
+    return connection._execute_clauseelement(
+    
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+    
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+    
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+    ^
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2363, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ^
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: profiles.city
+[SQL: SELECT profiles.id AS profiles_id, profiles.user_id AS profiles_user_id, profiles.username AS profiles_username, profiles.full_name AS profiles_full_name, profiles.email AS profiles_email, profiles.contact_number AS profiles_contact_number, profiles.college_name AS profiles_college_name, profiles.college_id AS profiles_college_id, profiles.city AS profiles_city, profiles.pincode AS profiles_pincode, profiles.college_email AS profiles_college_email, profiles.status AS profiles_status, profiles.avatar_url AS profiles_avatar_url, profiles.created_at AS profiles_created_at, profiles.updated_at AS profiles_updated_at 
+FROM profiles 
+WHERE profiles.username = ?
+ LIMIT ? OFFSET ?]
+[parameters: ('kiran123', 1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+127.0.0.1 - - [26/Dec/2025 17:33:10] "OPTIONS /auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 17:33:10] "POST /auth/login HTTP/1.1" 500 -
+Traceback (most recent call last):
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ^
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: profiles.city
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\flask\app.py", line 2213, in __call__
+    return self.wsgi_app(environ, start_response)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\flask\app.py", line 2193, in wsgi_app
+    response = self.handle_exception(e)
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\flask\app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\flask\app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ~^^^^^^^^^^^^^^^^^
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\T430\Desktop\studenthub\backend\routes\auth.py", line 66, in login
+    profile = Profile.query.filter_by(username=username).first()
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\orm\query.py", line 2759, in first
+    return self.limit(1)._iter().first()  # type: ignore
+           ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\orm\query.py", line 2857, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+    
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2351, in execute
+    return self._execute_internal(
+    
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2249, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+    
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\orm\context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+    
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1419, in execute
+    return meth(
+    
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 527, in _execute_on_connection
+    return connection._execute_clauseelement(
+    
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+    
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+    
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+    ^
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2363, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ^
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: profiles.city
+[SQL: SELECT profiles.id AS profiles_id, profiles.user_id AS profiles_user_id, profiles.username AS profiles_username, profiles.full_name AS profiles_full_name, profiles.email AS profiles_email, profiles.contact_number AS profiles_contact_number, profiles.college_name AS profiles_college_name, profiles.college_id AS profiles_college_id, profiles.city AS profiles_city, profiles.pincode AS profiles_pincode, profiles.college_email AS profiles_college_email, profiles.status AS profiles_status, profiles.avatar_url AS profiles_avatar_url, profiles.created_at AS profiles_created_at, profiles.updated_at AS profiles_updated_at 
+FROM profiles 
+WHERE profiles.username = ?
+ LIMIT ? OFFSET ?]
+[parameters: ('kiran123', 1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+ * Detected change in 'C:\\Users\\T430\\Desktop\\studenthub\\backend\\routes\\auth.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 612-162-592
+ * Detected change in 'C:\\Users\\T430\\Desktop\\studenthub\\backend\\routes\\auth.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 612-162-592
+127.0.0.1 - - [26/Dec/2025 17:34:52] "OPTIONS /auth/login HTTP/1.1" 200 -
+Traceback (most recent call last):
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: profiles.city
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\T430\Desktop\studenthub\backend\routes\auth.py", line 67, in login
+    profile = Profile.query.filter_by(username=username).first()
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\orm\query.py", line 2759, in first
+    return self.limit(1)._iter().first()  # type: ignore
+           ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\orm\query.py", line 2857, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+        params,
+        ^^^^^^^
+        execution_options={"_sa_orm_load_options": self.load_options},
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2351, in execute
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2249, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<4 lines>...
+        conn,
+        ^^^^^
+    )
+    ^
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\orm\context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+        statement, params or {}, execution_options=execution_options
+    )
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1419, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 527, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2363, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\T430\Desktop\studenthub\.venv\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: profiles.city
+[SQL: SELECT profiles.id AS profiles_id, profiles.user_id AS profiles_user_id, profiles.username AS profiles_username, profiles.full_name AS profiles_full_name, profiles.email AS profiles_email, profiles.contact_number AS profiles_contact_number, profiles.college_name AS profiles_college_name, profiles.college_id AS profiles_college_id, profiles.city AS profiles_city, profiles.pincode AS profiles_pincode, profiles.college_email AS profiles_college_email, profiles.status AS profiles_status, profiles.avatar_url AS profiles_avatar_url, profiles.created_at AS profiles_created_at, profiles.updated_at AS profiles_updated_at 
+FROM profiles 
+WHERE profiles.username = ?
+ LIMIT ? OFFSET ?]
+[parameters: ('kiran123', 1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+127.0.0.1 - - [26/Dec/2025 17:34:53] "POST /auth/login HTTP/1.1" 500 -
+ * Detected change in 'C:\\Users\\T430\\Desktop\\studenthub\\backend\\scripts\\add_city_pincode_columns.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 612-162-592
+ * Detected change in 'C:\\Users\\T430\\Desktop\\studenthub\\backend\\scripts\\add_city_pincode_columns.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 612-162-592
+ * Detected change in 'C:\\Users\\T430\\Desktop\\studenthub\\backend\\scripts\\add_city_pincode_columns.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 612-162-592
+127.0.0.1 - - [26/Dec/2025 17:38:34] "OPTIONS /auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 17:38:35] "POST /auth/login HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 17:38:35] "OPTIONS /auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 17:38:36] "GET /auth/me HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 17:38:36] "OPTIONS /admin/students HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 17:38:36] "OPTIONS /admin/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 17:38:36] "GET /admin/students HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 17:38:36] "GET /admin/uploads HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 17:38:42] "OPTIONS /admin/students HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 17:38:43] "GET /admin/students HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 17:38:47] "OPTIONS /admin/students/1e3761c0-e22c-4a17-a437-fc26120d7092/suspend HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 17:38:47] "POST /admin/students/1e3761c0-e22c-4a17-a437-fc26120d7092/suspend HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 17:38:47] "GET /admin/students HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 17:39:20] "OPTIONS /admin/students/155583a1-9a7e-486d-a157-5aa576015514/approve HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 17:39:20] "POST /admin/students/155583a1-9a7e-486d-a157-5aa576015514/approve HTTP/1.1" 400 -
