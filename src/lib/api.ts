@@ -1,6 +1,6 @@
 // API Types
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:5000';
 
 function getAuthHeaders() {
   const token = localStorage.getItem('access_token');
@@ -99,40 +99,34 @@ export const adminApi = {
     return Array.isArray(data) ? data : [];
   },
 
-  approveStudent: async (profileId: string, username: string): Promise<{ success: boolean; message: string }> => {
+  approveStudent: async (profileId: string, username: string) => {
     const res = await fetch(`${API_URL}/admin/students/${profileId}/approve`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', ...getAuthHeaders() },
       body: JSON.stringify({ username }),
     });
     const data = await res.json();
-    if (!res.ok) {
-      throw new Error(data?.message || 'Failed to approve student');
-    }
+    if (!res.ok) throw new Error(data?.message || 'Failed to approve student');
     return data;
   },
 
-  suspendStudent: async (profileId: string): Promise<{ success: boolean; message: string }> => {
-    const res = await fetch(`${API_URL}/admin/students/${profileId}/suspend`, { 
-      method: 'POST', 
-      headers: { ...getAuthHeaders() } 
+  suspendStudent: async (profileId: string) => {
+    const res = await fetch(`${API_URL}/admin/students/${profileId}/suspend`, {
+      method: 'POST',
+      headers: { ...getAuthHeaders() },
     });
     const data = await res.json();
-    if (!res.ok) {
-      throw new Error(data?.message || 'Failed to suspend student');
-    }
+    if (!res.ok) throw new Error(data?.message || 'Failed to suspend student');
     return data;
   },
 
-  activateStudent: async (profileId: string): Promise<{ success: boolean; message: string }> => {
-    const res = await fetch(`${API_URL}/admin/students/${profileId}/activate`, { 
-      method: 'POST', 
-      headers: { ...getAuthHeaders() } 
+  activateStudent: async (profileId: string) => {
+    const res = await fetch(`${API_URL}/admin/students/${profileId}/activate`, {
+      method: 'POST',
+      headers: { ...getAuthHeaders() },
     });
     const data = await res.json();
-    if (!res.ok) {
-      throw new Error(data?.message || 'Failed to activate student');
-    }
+    if (!res.ok) throw new Error(data?.message || 'Failed to activate student');
     return data;
   },
 
@@ -143,24 +137,18 @@ export const adminApi = {
     return (all || []).filter((u: any) => u.user_id === userId);
   },
 
-  updateUploadStatus: async (
-    uploadId: string,
-    status: 'reviewed' | 'approved' | 'rejected',
-    feedback?: string
-  ): Promise<{ success: boolean; message: string }> => {
+  updateUploadStatus: async (uploadId: string, status: 'reviewed' | 'approved' | 'rejected', feedback?: string) => {
     const res = await fetch(`${API_URL}/admin/uploads/${uploadId}/status`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', ...getAuthHeaders() },
       body: JSON.stringify({ status, feedback }),
     });
     const data = await res.json();
-    if (!res.ok) {
-      throw new Error(data?.message || 'Failed to update upload status');
-    }
+    if (!res.ok) throw new Error(data?.message || 'Failed to update upload status');
     return data;
   },
 
-  getAllUploads: async (): Promise<(DailyUpload & { student_name: string })[]> => {
+  getAllUploads: async () => {
     const res = await fetch(`${API_URL}/admin/uploads`, { headers: { ...getAuthHeaders() } });
     if (!res.ok) {
       const data = await res.json().catch(() => ({}));
@@ -184,7 +172,7 @@ export const studentApi = {
     return Array.isArray(data) ? data : [];
   },
 
-  uploadFile: async (file: File, description?: string): Promise<{ success: boolean; message: string; upload?: DailyUpload }> => {
+  uploadFile: async (file: File, description?: string) => {
     const form = new FormData();
     form.append('file', file);
     if (description) form.append('description', description);
@@ -199,7 +187,7 @@ export const studentApi = {
     return res.json();
   },
 
-  getProfile: async (): Promise<any> => {
+  getProfile: async () => {
     const res = await fetch(`${API_URL}/student/profile`, { headers: { ...getAuthHeaders() } });
     if (res.status === 401) throw new Error('Not authenticated');
     if (!res.ok) throw new Error('Failed to fetch profile');
@@ -212,7 +200,7 @@ export const studentApi = {
     collegeName?: string;
     collegeId?: string;
     collegeEmail?: string;
-  }): Promise<{ success: boolean; message: string }> => {
+  }) => {
     const res = await fetch(`${API_URL}/student/profile`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json', ...getAuthHeaders() },
