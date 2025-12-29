@@ -147,7 +147,7 @@ const SignupPage: React.FC = () => {
               <Label htmlFor="fullName">Full Name</Label>
               <Input
                 id="fullName"
-                placeholder="John Doe"
+                placeholder="Enter your full name"
                 {...register('fullName')}
                 className={errors.fullName ? 'border-destructive' : ''}
               />
@@ -176,7 +176,7 @@ const SignupPage: React.FC = () => {
                 id="contactNumber"
                 type="tel"
                 placeholder="+91 9876543210"
-                maxLength={10}
+                maxLength={15}
                 minLength={10}
                 {...register('contactNumber')}
                 className={errors.contactNumber ? 'border-destructive' : ''}
