@@ -9,7 +9,8 @@ import {
   UserX,
   Eye,
   Loader2,
-  Mail
+  Mail,
+  MoreHorizontal
 } from 'lucide-react';
 import { adminApi, User } from '@/lib/api';
 import { useToast } from '@/hooks/use-toast';
@@ -42,6 +43,13 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+} from '@/components/ui/dropdown-menu';
 
 export default function StudentsPage() {
   const { toast } = useToast();
@@ -155,6 +163,37 @@ export default function StudentsPage() {
     // fetch uploads for this student
     if (student.user_id) {
       await loadStudentUploads(student.user_id);
+    }
+  };
+
+  // Delete student
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [deleteTarget, setDeleteTarget] = useState<User | null>(null);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const handleDeleteClick = (student: User) => {
+    setDeleteTarget(student);
+    setDeleteDialogOpen(true);
+  };
+
+  const handleConfirmDelete = async () => {
+    if (!deleteTarget) return;
+    setIsDeleting(true);
+    try {
+      const res = await adminApi.deleteStudent(deleteTarget.id);
+      if (res.success) {
+        toast({ title: 'Student deleted', description: `${deleteTarget.full_name} was removed.` });
+        setDeleteDialogOpen(false);
+        setDeleteTarget(null);
+        await fetchStudents();
+      } else {
+        throw new Error(res.message || 'Failed to delete student');
+      }
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'Failed to delete student';
+      toast({ variant: 'destructive', title: 'Error', description: errorMessage });
+    } finally {
+      setIsDeleting(false);
     }
   };
 
@@ -440,6 +479,24 @@ export default function StudentsPage() {
                           <Button variant="ghost" size="sm" onClick={() => handleViewClick(student)}>
                             <Eye className="h-4 w-4" />
                           </Button>
+
+                          {/* More actions */}
+                          <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                              <Button variant="ghost" size="sm">
+                                <MoreHorizontal className="h-4 w-4" />
+                              </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent>
+                              <DropdownMenuItem onSelect={() => handleViewClick(student)}>View</DropdownMenuItem>
+                              <DropdownMenuSeparator />
+                              <DropdownMenuItem onSelect={() => handleApproveClick(student)} disabled={student.status !== 'pending'}>Approve</DropdownMenuItem>
+                              <DropdownMenuItem onSelect={() => handleSuspend(student)} disabled={student.status !== 'active'}>Suspend</DropdownMenuItem>
+                              <DropdownMenuItem onSelect={() => handleActivate(student)} disabled={student.status !== 'suspended'}>Activate</DropdownMenuItem>
+                              <DropdownMenuSeparator />
+                              <DropdownMenuItem className="text-destructive" onSelect={() => handleDeleteClick(student)}>Delete</DropdownMenuItem>
+                            </DropdownMenuContent>
+                          </DropdownMenu>
                         </div>
                       </TableCell>
                     </TableRow>
@@ -583,6 +640,27 @@ export default function StudentsPage() {
 
           <DialogFooter>
             <Button variant="outline" onClick={() => setViewDialogOpen(false)}>Close</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Delete Confirmation Dialog */}
+      <Dialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Delete Student</DialogTitle>
+            <DialogDescription>
+              Are you sure you want to permanently delete {deleteTarget?.full_name}? This action will remove their account and all uploads.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => { setDeleteDialogOpen(false); setDeleteTarget(null); }}>
+              Cancel
+            </Button>
+            <Button className="text-white bg-red-600 hover:bg-red-700" onClick={handleConfirmDelete} disabled={isDeleting}>
+              {isDeleting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
+              Delete
+            </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

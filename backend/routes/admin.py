@@ -1,4 +1,5 @@
 from flask import Blueprint, request, jsonify, current_app
+import os
 from ..db import db
 from ..models import Profile, DailyUpload, User
 from flask_jwt_extended import jwt_required, get_jwt_identity
@@ -175,3 +176,44 @@ def update_upload_status(upload_id):
     except Exception as e:
         db.session.rollback()
         return jsonify({'success': False, 'message': f'Failed to update upload status: {str(e)}'}), 500
+
+@admin_bp.route('/students/<profile_id>', methods=['DELETE'])
+@jwt_required()
+@admin_only
+def delete_student(profile_id):
+    try:
+        profile = Profile.query.get(profile_id)
+        if not profile:
+            return jsonify({'success': False, 'message': 'Profile not found'}), 404
+
+        # Delete uploads from disk and DB
+        uploads = DailyUpload.query.filter_by(user_id=profile.user_id).all()
+        uploads_root = current_app.config.get('UPLOAD_FOLDER')
+        for u in uploads:
+            # try to delete file if exists
+            try:
+                file_path = u.file_url
+                if not file_path.startswith('/'):
+                    # stored as absolute path
+                    path = file_path
+                else:
+                    # relative URL like /uploads/relpath
+                    rel = file_path.replace('/uploads/', '')
+                    path = os.path.join(uploads_root, rel.replace('/', os.sep))
+                if os.path.exists(path):
+                    os.remove(path)
+            except Exception:
+                pass
+            db.session.delete(u)
+
+        # Delete profile and user
+        user = User.query.get(profile.user_id)
+        db.session.delete(profile)
+        if user:
+            db.session.delete(user)
+
+        db.session.commit()
+        return jsonify({'success': True, 'message': 'Student deleted successfully.'})
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'success': False, 'message': f'Failed to delete student: {str(e)}'}), 500

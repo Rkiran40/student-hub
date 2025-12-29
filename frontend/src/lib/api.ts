@@ -99,6 +99,18 @@ export const adminApi = {
     return Array.isArray(data) ? data : [];
   },
 
+  deleteStudent: async (profileId: string): Promise<{ success: boolean; message: string }> => {
+    const res = await fetch(`${API_URL}/admin/students/${profileId}`, {
+      method: 'DELETE',
+      headers: { ...getAuthHeaders() },
+    });
+    const data = await res.json();
+    if (!res.ok) {
+      throw new Error(data?.message || 'Failed to delete student');
+    }
+    return data;
+  },
+
   approveStudent: async (profileId: string, username: string): Promise<{ success: boolean; message: string }> => {
     const res = await fetch(`${API_URL}/admin/students/${profileId}/approve`, {
       method: 'POST',
