@@ -17,6 +17,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import {
   Select,
   SelectContent,
@@ -119,6 +120,13 @@ export default function StudentsPage() {
     const year = new Date().getFullYear().toString().slice(-2);
     const random = Math.floor(100 + Math.random() * 900);
     return `${prefix}${year}${random}`;
+  };
+
+  const getInitials = (name?: string) => {
+    if (!name) return '';
+    const parts = name.trim().split(/\s+/);
+    if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+    return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
   };
 
   const handleApproveClick = (student: User) => {
@@ -355,9 +363,19 @@ export default function StudentsPage() {
                     <TableRow key={student.id}>
                       <TableCell>
                         <div className="flex items-center gap-3">
-                          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
-                            <Users className="h-5 w-5 text-primary" />
-                          </div>
+                          <Avatar>
+                            {student.avatar_url ? (
+                              <AvatarImage
+                                src={
+                                  student.avatar_url.startsWith('http')
+                                    ? student.avatar_url
+                                    : `${import.meta.env.VITE_API_URL || 'http://localhost:5001'}${student.avatar_url}`
+                                }
+                                alt={student.full_name}
+                              />
+                            ) : null}
+                            <AvatarFallback>{getInitials(student.full_name)}</AvatarFallback>
+                          </Avatar>
                           <span className="font-medium">
                             {student.full_name}
                           </span>
