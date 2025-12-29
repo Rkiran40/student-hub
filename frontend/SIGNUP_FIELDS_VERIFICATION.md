@@ -13,7 +13,7 @@
 ### Step 1: Personal Information
 | Form Field | Frontend Name | Backend Field | Database Table | Status |
 |------------|---------------|---------------|----------------|--------|
-| Full Name | `fullName` | `full_name` | `profiles.full_name` | ✅ Stored |
+| Full Name | `firstName` + `lastName` | `full_name` (concatenated) | `profiles.full_name` | ✅ Stored |
 | Email Address | `email` | `email` | `users.email` + `profiles.email` | ✅ Stored |
 | Contact Number | `contactNumber` | `contact_number` | `profiles.contact_number` | ✅ Stored |
 
@@ -68,7 +68,7 @@
 ## ✅ Verification Checklist
 
 ### Frontend → Backend
-- [x] `fullName` → `full_name` ✅
+- [x] `firstName` + `lastName` → `full_name` (concatenated) ✅
 - [x] `email` → `email` ✅
 - [x] `contactNumber` → `contact_number` ✅
 - [x] `collegeName` → `college_name` ✅

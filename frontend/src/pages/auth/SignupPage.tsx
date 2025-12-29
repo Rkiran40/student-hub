@@ -12,7 +12,8 @@ import { useAuth } from '@/contexts/AuthContext';
 import AuthLayout from '@/components/auth/AuthLayout';
 
 const signupSchema = z.object({
-  fullName: z.string().min(2, 'Full name must be at least 2 characters').max(100),
+  firstName: z.string().min(1, 'First name is required').max(50),
+  lastName: z.string().min(1, 'Last name is required').max(50),
   email: z.string().email('Please enter a valid email address'),
   contactNumber: z.string().min(10, 'Please enter a valid phone number').max(15),
   collegeName: z.string().min(3, 'College name is required').max(100),
@@ -51,7 +52,7 @@ const SignupPage: React.FC = () => {
     mode: 'onBlur',
   });
 
-  const step1Fields = ['fullName', 'email', 'contactNumber'] as const;
+  const step1Fields = ['firstName', 'lastName', 'email', 'contactNumber'] as const;
   const step2Fields = ['collegeName', 'city', 'pincode', 'collegeEmail'] as const;
   const step3Fields = ['password', 'confirmPassword'] as const;
 
@@ -74,7 +75,7 @@ const SignupPage: React.FC = () => {
     setIsLoading(true);
     try {
       const result = await signUp(data.email, data.password, {
-        full_name: data.fullName,
+        full_name: `${data.firstName} ${data.lastName}`,
         contact_number: data.contactNumber,
         college_name: data.collegeName,
         city: data.city,
@@ -144,15 +145,27 @@ const SignupPage: React.FC = () => {
         {step === 1 && (
           <div className="space-y-4 animate-fade-in">
             <div className="space-y-2">
-              <Label htmlFor="fullName">Full Name</Label>
+              <Label htmlFor="firstName">First Name</Label>
               <Input
-                id="fullName"
-                placeholder="Enter your full name"
-                {...register('fullName')}
-                className={errors.fullName ? 'border-destructive' : ''}
+                id="firstName"
+                placeholder="Enter your First Name"
+                {...register('firstName')}
+                className={errors.firstName ? 'border-destructive' : ''}
               />
-              {errors.fullName && (
-                <p className="text-xs text-destructive">{errors.fullName.message}</p>
+              {errors.firstName && (
+                <p className="text-xs text-destructive">{errors.firstName.message}</p>
+              )}
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="lastName">Last name</Label>
+              <Input
+                id="lastName"
+                placeholder="Enter your Last Name"
+                {...register('lastName')}
+                className={errors.lastName ? 'border-destructive' : ''}
+              />
+              {errors.lastName && (
+                <p className="text-xs text-destructive">{errors.lastName.message}</p>
               )}
             </div>
 
@@ -176,7 +189,7 @@ const SignupPage: React.FC = () => {
                 id="contactNumber"
                 type="tel"
                 placeholder="+91 9876543210"
-                maxLength={15}
+                maxLength={10}
                 minLength={10}
                 {...register('contactNumber')}
                 className={errors.contactNumber ? 'border-destructive' : ''}
