@@ -54,6 +54,12 @@ export default function StudentsPage() {
   const [generatedUsername, setGeneratedUsername] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
 
+  // View student details
+  const [viewDialogOpen, setViewDialogOpen] = useState(false);
+  const [selectedStudentView, setSelectedStudentView] = useState<User | null>(null);
+  const [studentUploads, setStudentUploads] = useState<any[]>([]);
+  const [uploadsLoading, setUploadsLoading] = useState(false);
+
   const fetchStudents = useCallback(async () => {
     try {
       setIsLoading(true);
@@ -119,6 +125,29 @@ export default function StudentsPage() {
     setSelectedStudent(student);
     setGeneratedUsername(generateUsername());
     setApproveDialogOpen(true);
+  };
+
+  const loadStudentUploads = async (userId: string) => {
+    setUploadsLoading(true);
+    try {
+      const uploads = await adminApi.getStudentUploads(userId);
+      setStudentUploads(uploads || []);
+    } catch (error) {
+      console.error('Failed to fetch student uploads:', error);
+      toast({ variant: 'destructive', title: 'Error', description: 'Failed to load student uploads' });
+      setStudentUploads([]);
+    } finally {
+      setUploadsLoading(false);
+    }
+  };
+
+  const handleViewClick = async (student: User) => {
+    setSelectedStudentView(student);
+    setViewDialogOpen(true);
+    // fetch uploads for this student
+    if (student.user_id) {
+      await loadStudentUploads(student.user_id);
+    }
   };
 
   const handleApprove = async () => {
@@ -390,9 +419,9 @@ export default function StudentsPage() {
                               Activate
                             </Button>
                           )}
-                          {/* <Button variant="ghost" size="sm">
+                          <Button variant="ghost" size="sm" onClick={() => handleViewClick(student)}>
                             <Eye className="h-4 w-4" />
-                          </Button> */}
+                          </Button>
                         </div>
                       </TableCell>
                     </TableRow>
@@ -406,47 +435,136 @@ export default function StudentsPage() {
 
       {/* Approve Dialog */}
       <Dialog open={approveDialogOpen} onOpenChange={setApproveDialogOpen}>
+            <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Approve Student</DialogTitle>
+              <DialogDescription>
+                Assign a username to {selectedStudent?.full_name}
+              </DialogDescription>
+            </DialogHeader>
+            <div className="space-y-4 py-4">
+              <div className="space-y-2">
+                <Label htmlFor="username">Generated Username</Label>
+                <Input
+                  id="username"
+                  value={generatedUsername}
+                  onChange={(e) => setGeneratedUsername(e.target.value)}
+                  placeholder="e.g., ngs25110"
+                />
+                <p className="text-xs text-muted-foreground">
+                  This username will be assigned to the student
+                </p>
+              </div>
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                onClick={() => setGeneratedUsername(generateUsername())}
+              >
+                Regenerate
+              </Button>
+            </div>
+            <DialogFooter>
+              <Button variant="outline" onClick={() => setApproveDialogOpen(false)}>
+                Cancel
+              </Button>
+              <Button 
+                className="bg-green-600 hover:bg-green-700"
+                onClick={handleApprove}
+                disabled={isProcessing || !generatedUsername}
+              >
+                {isProcessing && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                Approve & Assign
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+
+      {/* View Student Dialog */}
+      <Dialog open={viewDialogOpen} onOpenChange={setViewDialogOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Approve Student</DialogTitle>
+            <DialogTitle>Student Details</DialogTitle>
             <DialogDescription>
-              Assign a username to {selectedStudent?.full_name}
+              Full profile and uploads for {selectedStudentView?.full_name}
             </DialogDescription>
           </DialogHeader>
-          <div className="space-y-4 py-4">
-            <div className="space-y-2">
-              <Label htmlFor="username">Generated Username</Label>
-              <Input
-                id="username"
-                value={generatedUsername}
-                onChange={(e) => setGeneratedUsername(e.target.value)}
-                placeholder="e.g., ngs25110"
-              />
-              <p className="text-xs text-muted-foreground">
-                This username will be assigned to the student
-              </p>
+
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 py-4">
+            <div>
+              <p className="text-sm text-muted-foreground">Full name</p>
+              <div className="font-medium">{selectedStudentView?.full_name}</div>
+
+              <p className="mt-3 text-sm text-muted-foreground">Email</p>
+              <div className="font-medium">{selectedStudentView?.email}</div>
+
+              <p className="mt-3 text-sm text-muted-foreground">Username</p>
+              <div className="font-medium">{selectedStudentView?.username || '-'}</div>
+
+              <p className="mt-3 text-sm text-muted-foreground">Contact Number</p>
+              <div className="font-medium">{selectedStudentView?.contact_number || '-'}</div>
+
+              <p className="mt-3 text-sm text-muted-foreground">College</p>
+              <div className="font-medium">{selectedStudentView?.college_name || '-'}</div>
+
+              <p className="mt-3 text-sm text-muted-foreground">City</p>
+              <div className="font-medium">{selectedStudentView?.city || '-'}</div>
+
+              <p className="mt-3 text-sm text-muted-foreground">Pincode</p>
+              <div className="font-medium">{selectedStudentView?.pincode || '-'}</div>
+
+              <p className="mt-3 text-sm text-muted-foreground">Status</p>
+              <div className="font-medium">{selectedStudentView?.status}</div>
             </div>
-            <Button
-              type="button"
-              variant="outline"
-              size="sm"
-              onClick={() => setGeneratedUsername(generateUsername())}
-            >
-              Regenerate
-            </Button>
+
+            <div>
+              <h3 className="text-sm font-medium">Uploads</h3>
+              {uploadsLoading ? (
+                <div className="py-6 flex items-center justify-center">
+                  <Loader2 className="h-6 w-6 animate-spin text-primary" />
+                </div>
+              ) : studentUploads.length === 0 ? (
+                <div className="py-6 text-sm text-muted-foreground">No uploads found for this student.</div>
+              ) : (
+                <div className="overflow-x-auto">
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>File</TableHead>
+                        <TableHead>Status</TableHead>
+                        <TableHead>Uploaded</TableHead>
+                        <TableHead className="text-right">Action</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {studentUploads.map((u) => (
+                        <TableRow key={u.id}>
+                          <TableCell>{u.file_name}</TableCell>
+                          <TableCell>
+                            <Badge className="bg-yellow-500/10 text-yellow-600 border-yellow-500/20">{u.status}</Badge>
+                          </TableCell>
+                          <TableCell>{u.upload_date ? format(new Date(u.upload_date), 'MMM dd, yyyy') : '-'}</TableCell>
+                          <TableCell className="text-right">
+                            <a
+                              className="text-sm text-primary hover:underline"
+                              href={u.file_url && u.file_url.startsWith('http') ? u.file_url : `${import.meta.env.VITE_API_URL || 'http://localhost:5001'}${u.file_url}`}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              View
+                            </a>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </div>
+              )}
+            </div>
           </div>
+
           <DialogFooter>
-            <Button variant="outline" onClick={() => setApproveDialogOpen(false)}>
-              Cancel
-            </Button>
-            <Button 
-              className="bg-green-600 hover:bg-green-700"
-              onClick={handleApprove}
-              disabled={isProcessing || !generatedUsername}
-            >
-              {isProcessing && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-              Approve & Assign
-            </Button>
+            <Button variant="outline" onClick={() => setViewDialogOpen(false)}>Close</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
