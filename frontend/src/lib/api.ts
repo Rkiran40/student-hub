@@ -1,6 +1,10 @@
 // API Types
 
+<<<<<<< HEAD:frontend/src/lib/api.ts
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001';
+=======
+const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:5000';
+>>>>>>> ea0322aa0fb8e8c7191951e35114c50dcc953a1c:src/lib/api.ts
 
 function getAuthHeaders() {
   const token = localStorage.getItem('access_token');
@@ -121,6 +125,7 @@ export const adminApi = {
     return Array.isArray(data) ? data : [];
   },
 
+<<<<<<< HEAD:frontend/src/lib/api.ts
   deleteStudent: async (profileId: string): Promise<{ success: boolean; message: string }> => {
     const res = await fetch(`${API_URL}/admin/students/${profileId}`, {
       method: 'DELETE',
@@ -134,39 +139,36 @@ export const adminApi = {
   },
 
   approveStudent: async (profileId: string, username: string): Promise<{ success: boolean; message: string }> => {
+=======
+  approveStudent: async (profileId: string, username: string) => {
+>>>>>>> ea0322aa0fb8e8c7191951e35114c50dcc953a1c:src/lib/api.ts
     const res = await fetch(`${API_URL}/admin/students/${profileId}/approve`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', ...getAuthHeaders() },
       body: JSON.stringify({ username }),
     });
     const data = await res.json();
-    if (!res.ok) {
-      throw new Error(data?.message || 'Failed to approve student');
-    }
+    if (!res.ok) throw new Error(data?.message || 'Failed to approve student');
     return data;
   },
 
-  suspendStudent: async (profileId: string): Promise<{ success: boolean; message: string }> => {
-    const res = await fetch(`${API_URL}/admin/students/${profileId}/suspend`, { 
-      method: 'POST', 
-      headers: { ...getAuthHeaders() } 
+  suspendStudent: async (profileId: string) => {
+    const res = await fetch(`${API_URL}/admin/students/${profileId}/suspend`, {
+      method: 'POST',
+      headers: { ...getAuthHeaders() },
     });
     const data = await res.json();
-    if (!res.ok) {
-      throw new Error(data?.message || 'Failed to suspend student');
-    }
+    if (!res.ok) throw new Error(data?.message || 'Failed to suspend student');
     return data;
   },
 
-  activateStudent: async (profileId: string): Promise<{ success: boolean; message: string }> => {
-    const res = await fetch(`${API_URL}/admin/students/${profileId}/activate`, { 
-      method: 'POST', 
-      headers: { ...getAuthHeaders() } 
+  activateStudent: async (profileId: string) => {
+    const res = await fetch(`${API_URL}/admin/students/${profileId}/activate`, {
+      method: 'POST',
+      headers: { ...getAuthHeaders() },
     });
     const data = await res.json();
-    if (!res.ok) {
-      throw new Error(data?.message || 'Failed to activate student');
-    }
+    if (!res.ok) throw new Error(data?.message || 'Failed to activate student');
     return data;
   },
 
@@ -177,24 +179,18 @@ export const adminApi = {
     return (all || []).filter((u: DailyUpload) => u.user_id === userId);
   },
 
-  updateUploadStatus: async (
-    uploadId: string,
-    status: 'reviewed' | 'approved' | 'rejected',
-    feedback?: string
-  ): Promise<{ success: boolean; message: string }> => {
+  updateUploadStatus: async (uploadId: string, status: 'reviewed' | 'approved' | 'rejected', feedback?: string) => {
     const res = await fetch(`${API_URL}/admin/uploads/${uploadId}/status`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', ...getAuthHeaders() },
       body: JSON.stringify({ status, feedback }),
     });
     const data = await res.json();
-    if (!res.ok) {
-      throw new Error(data?.message || 'Failed to update upload status');
-    }
+    if (!res.ok) throw new Error(data?.message || 'Failed to update upload status');
     return data;
   },
 
-  getAllUploads: async (): Promise<(DailyUpload & { student_name: string })[]> => {
+  getAllUploads: async () => {
     const res = await fetch(`${API_URL}/admin/uploads`, { headers: { ...getAuthHeaders() } });
     if (!res.ok) {
       const data = await res.json().catch(() => ({}));
@@ -262,7 +258,11 @@ export const studentApi = {
     return Array.isArray(data) ? data : [];
   },
 
+<<<<<<< HEAD:frontend/src/lib/api.ts
   uploadFile: async (file: File, description?: string): Promise<{ success: boolean; message: string; upload?: DailyUpload; filename?: string; mimetype?: string; file_url?: string; fileUrl?: string }> => {
+=======
+  uploadFile: async (file: File, description?: string) => {
+>>>>>>> ea0322aa0fb8e8c7191951e35114c50dcc953a1c:src/lib/api.ts
     const form = new FormData();
     form.append('file', file);
     if (description) form.append('description', description);
@@ -294,8 +294,13 @@ export const studentApi = {
     return data;
   },
 
+<<<<<<< HEAD:frontend/src/lib/api.ts
   getProfile: async (): Promise<User> => {
     const res = await fetch(`${API_URL}/student/profile`, { headers: { ...requireAuthHeaders() } });
+=======
+  getProfile: async () => {
+    const res = await fetch(`${API_URL}/student/profile`, { headers: { ...getAuthHeaders() } });
+>>>>>>> ea0322aa0fb8e8c7191951e35114c50dcc953a1c:src/lib/api.ts
     if (res.status === 401) throw new Error('Not authenticated');
     if (!res.ok) throw new Error('Failed to fetch profile');
     return res.json();
@@ -354,9 +359,13 @@ export const studentApi = {
     collegeName?: string;
     collegeId?: string;
     collegeEmail?: string;
+<<<<<<< HEAD:frontend/src/lib/api.ts
     avatarUrl?: string;
     avatar_url?: string;
   }): Promise<{ success: boolean; message: string }> => {
+=======
+  }) => {
+>>>>>>> ea0322aa0fb8e8c7191951e35114c50dcc953a1c:src/lib/api.ts
     const res = await fetch(`${API_URL}/student/profile`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json', ...requireAuthHeaders() },
