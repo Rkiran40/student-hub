@@ -42,6 +42,17 @@ instance/
 # ======================
 backend/uploads/
 
+# Local development DBs (do not commit)
+backend/dev_fallback.db
+backend/dev_alembic.db
+*.db
+
+# Python compiled files (do not commit)
+__pycache__/
+*.pyc
+*.pyo
+
+
 # ======================
 # Editor / OS files
 # ======================

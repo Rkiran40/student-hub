@@ -161,7 +161,7 @@ export default function FeedbackPage() {
             <label className="block text-sm font-medium mb-1">Rating <span className="text-destructive">*</span></label>
             {/* hidden registered field to keep react-hook-form aware of rating value */}
             <input type="hidden" {...register('rating', { valueAsNumber: true })} />
-            <div className="flex items-center gap-2 flex-wrap">
+            <div className="flex items-center gap-1 flex-wrap">
               {allowedRatings.map((n) => {
                 const selected = selectedRating === n;
                 const colorClass = getRatingColor(n);
@@ -170,7 +170,7 @@ export default function FeedbackPage() {
                     key={String(n)}
                     type="button"
                     onClick={() => { setValue('rating', n, { shouldValidate: true }); setSelectedRating(n); }}
-                    className={`flex items-center gap-3 px-4 py-2 rounded-md border ${selected ? `${colorClass} ring-2 ring-offset-1` : 'bg-white hover:bg-muted'}`}
+                    className={`flex items-center gap-1 px-[12px] py-[2px] rounded-full border ${selected ? `${colorClass} ring-2 ring-offset-1 border-grey-500` : 'bg-white hover:bg-secondary hover:border-2 hover:border-grey-900'}`}
                     aria-pressed={selected}
                     aria-label={`Rating ${n}`}
                   >
