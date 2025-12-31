@@ -6,14 +6,16 @@ from backend.db import db as _db
 
 @pytest.fixture(scope='session')
 def app():
-    # Create app with testing config
-    app = create_app()
-    app.config.update({
+    # Create app with testing config passed at creation time
+    # Use a temp sqlite file to ensure the DB persists across request contexts
+    tmp_db = os.path.join(tempfile.mkdtemp(prefix='studenthub_test_db_'), 'test_db.sqlite')
+    test_config = {
         'TESTING': True,
-        'SQLALCHEMY_DATABASE_URI': 'sqlite:///:memory:',
+        'SQLALCHEMY_DATABASE_URI': f'sqlite:///{tmp_db}',
         'UPLOAD_FOLDER': tempfile.mkdtemp(prefix='studenthub_test_uploads_'),
         'JWT_SECRET_KEY': 'test-secret',
-    })
+    }
+    app = create_app(test_config)
 
     # Recreate database tables for the test DB
     with app.app_context():

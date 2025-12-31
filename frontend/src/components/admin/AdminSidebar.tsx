@@ -136,7 +136,7 @@ export function AdminSidebar({ isOpen = true, onClose }: AdminSidebarProps) {
           <div className="border-t border-border p-4">
             <Button
               variant="ghost"
-              className="w-full justify-start gap-3 text-muted-foreground hover:text-destructive"
+              className="w-full justify-start gap-3 text-muted-foreground hover:text-destructive text-black hover:font-bold hover:text-black"
               onClick={handleLogout}
             >
               <LogOut className="h-5 w-5" />

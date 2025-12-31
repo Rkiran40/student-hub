@@ -42,11 +42,33 @@ This project is built with:
 
 ## How can I deploy this project?
 
-Build the app and deploy the static output (`dist/`) to your hosting provider (Vercel, Netlify, GitHub Pages, etc.).
+There are two recommended deployment approaches:
 
-## Can I connect a custom domain?
+1) Docker / Compose (recommended for full-stack deployments)
 
-Yes — configure your hosting provider to point your domain to the deployed app following their docs.
+- Start the app locally with Docker Compose:
+
+  1. Copy env example files and update secrets:
+     ```sh
+     cp backend/.env.example backend/.env
+     cp frontend/.env.example frontend/.env
+     ```
+  2. Build and run services:
+     ```sh
+     docker-compose -f docker-compose.prod.yml up --build -d
+     ```
+  3. Frontend will be available at http://localhost (port 80) and backend at http://localhost:5001.
+
+2) Platform-specific (Railway, Render, Heroku)
+
+- Backend: use `backend/Dockerfile` or deploy with Gunicorn using `Procfile` (Heroku). Ensure `DATABASE_URL`, `JWT_SECRET_KEY`, and `UPLOAD_FOLDER` are provided as env vars.
+- Frontend: build the static `dist/` (Vite) and serve with a static host or via `frontend/Dockerfile` (nginx) for container deployments.
+
+### CI & automation
+- `.github/workflows/ci.yml` builds the frontend and runs backend tests.
+- `.github/workflows/publish.yml` is a template to build & push Docker images to GHCR (configure secrets before enabling).
+
+---
 
 ## Responsive updates ✅
 
