@@ -21,6 +21,15 @@ def create_app():
     jwt.init_app(app)
 
     with app.app_context():
+        # ensure models are imported so SQLAlchemy metadata includes them before create_all()
+        try:
+            print('IMPORTING backend.models')
+            from . import models  # noqa: F401 - import for side-effects (register models)
+            print('IMPORTED backend.models')
+            app.logger.info('Imported backend.models')
+        except Exception as e:
+            print('FAILED to import backend.models', e)
+            app.logger.exception('Failed to import backend.models')
         # create db tables
         db.create_all()
 
@@ -37,15 +46,21 @@ def create_app():
     @app.route('/uploads/<path:relpath>')
     def serve_upload(relpath):
         import os
-        from flask import send_from_directory
+        from flask import send_from_directory, abort
         uploads_root = app.config.get('UPLOAD_FOLDER')
-        # Convert URL forward slashes to OS-specific path separators
-        relpath_os = relpath.replace('/', os.sep)
-        full = os.path.join(uploads_root, relpath_os)
-        if not os.path.exists(full):
+        # Normalize to a safe OS path for filesystem checks
+        rel_parts = [p for p in relpath.replace('\\', '/').split('/') if p and p != '..']
+        full = os.path.join(uploads_root, *rel_parts)
+        if not os.path.isfile(full):
+            # Don't leak filesystem details; return a simple 404 JSON
             return jsonify({'success': False, 'message': 'File not found'}), 404
-        # Use the OS path for file access, but original relpath for send_from_directory
-        return send_from_directory(uploads_root, relpath_os)
+        # For send_from_directory, use a POSIX-style relative path
+        rel_for_send = '/'.join(rel_parts)
+        try:
+            return send_from_directory(uploads_root, rel_for_send)
+        except Exception:
+            # If send_from_directory fails for any reason, return generic 404
+            return jsonify({'success': False, 'message': 'File not found'}), 404
 
     @app.get('/debug/db')
     def debug_db():
@@ -75,4 +90,6 @@ def create_app():
 
 
 if __name__ == '__main__':
-    create_app().run(host='0.0.0.0', port=5000, debug=True)
+    # Allow overriding the port with the PORT env var (default to 5001 for local dev)
+    port = int(os.environ.get('PORT', 5001))
+    create_app().run(host='0.0.0.0', port=port, debug=True)

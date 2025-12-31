@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -19,7 +20,7 @@ import {
 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
-import { authApi } from '@/lib/api';
+import { authApi, studentApi } from '@/lib/api';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -45,10 +46,15 @@ import {
 const profileSchema = z.object({
   fullName: z.string().min(1, 'Full name is required'),
   email: z.string().email('Invalid email address'),
-  contactNumber: z.string().min(10, 'Invalid contact number'),
-  collegeName: z.string().min(1, 'College name is required'),
+  // contactNumber can be empty or at least 10 digits
+  contactNumber: z.union([z.string().min(10, 'Invalid contact number'), z.literal('')]),
+  // Make college name optional to avoid blocking save for users without college info
+  collegeName: z.union([z.string().min(1, 'College name is required'), z.literal('')]),
   collegeId: z.string().optional(),
   collegeEmail: z.string().email('Invalid email').optional().or(z.literal('')),
+  courseName: z.string().optional(),
+  courseMode: z.enum(['online','offline']).optional(),
+  courseDuration: z.enum(['long','short']).optional(),
 });
 
 const passwordSchema = z.object({
@@ -65,10 +71,12 @@ type PasswordFormData = z.infer<typeof passwordSchema>;
 export default function ProfilePage() {
   const { user, refreshProfile } = useAuth();
   const { toast } = useToast();
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
   const [isChangingPassword, setIsChangingPassword] = useState(false);
   const [profilePhoto, setProfilePhoto] = useState<string | null>(null);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [passwordDialogOpen, setPasswordDialogOpen] = useState(false);
 
   const profileForm = useForm<ProfileFormData>({
@@ -80,6 +88,9 @@ export default function ProfilePage() {
       collegeName: '',
       collegeId: '',
       collegeEmail: '',
+      courseName: '',
+      courseMode: undefined,
+      courseDuration: undefined,
     },
   });
 
@@ -92,18 +103,20 @@ export default function ProfilePage() {
   });
 
   useEffect(() => {
-    if (user?.profile) {
+    if (user) {
+      // Use profile fields when present, otherwise fall back to top-level user fields (e.g., email)
       profileForm.reset({
-        fullName: user.profile.full_name || '',
-        email: user.profile.email || '',
-        contactNumber: user.profile.contact_number || '',
-        collegeName: user.profile.college_name || '',
-        collegeId: user.profile.college_id || '',
-        collegeEmail: user.profile.college_email || '',
+        fullName: user.profile?.full_name || '',
+        email: user.profile?.email || user.email || '',
+        contactNumber: user.profile?.contact_number || '',
+        collegeName: user.profile?.college_name || '',
+        collegeId: user.profile?.college_id || '',
+        collegeEmail: user.profile?.college_email || '',
+        courseName: user.profile?.course_name || '',
+        courseMode: user.profile?.course_mode || undefined,
+        courseDuration: user.profile?.course_duration || undefined,
       });
-      setProfilePhoto(user.profile.avatar_url || null);
-      setIsLoading(false);
-    } else if (user) {
+      setProfilePhoto(user.profile?.avatar_url || null);
       setIsLoading(false);
     }
   }, [user, profileForm]);
@@ -111,33 +124,67 @@ export default function ProfilePage() {
   const onProfileSubmit = async (data: ProfileFormData) => {
     if (!user) return;
 
+    // Ensure user is authenticated
+    const token = localStorage.getItem('access_token');
+    if (!token) {
+      toast({ variant: 'destructive', title: 'Not authenticated', description: 'Please sign in to save changes.' });
+      navigate('/auth/login');
+      return;
+    }
+
     setIsSaving(true);
     try {
-      const token = localStorage.getItem('access_token');
-      const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/student/profile`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-        body: JSON.stringify({
-          fullName: data.fullName,
-          contactNumber: data.contactNumber,
-          collegeName: data.collegeName,
-          collegeId: data.collegeId,
-          collegeEmail: data.collegeEmail,
-        }),
-      });
-      if (!res.ok) throw new Error('Failed to update profile');
+      let avatarUrl: string | undefined;
+
+      // If a new photo has been selected, upload it first
+      if (selectedFile) {
+        const uploadRes = await studentApi.uploadFile(selectedFile);
+        if (!uploadRes || !uploadRes.success) {
+          // include server-provided filename/mimetype if available to make debugging easier
+          const meta = uploadRes ? ` (${uploadRes.filename || ''}${uploadRes.filename && uploadRes.mimetype ? ', ' : ''}${uploadRes.mimetype || ''})` : '';
+          throw new Error((uploadRes?.message || 'Failed to upload photo') + meta);
+        }
+        avatarUrl = uploadRes.upload?.file_url || uploadRes.upload?.fileUrl || uploadRes.file_url || uploadRes.fileUrl;
+      }
+
+      const payload: any = {
+        fullName: data.fullName,
+        email: data.email,
+        contactNumber: data.contactNumber,
+        collegeName: data.collegeName,
+        collegeId: data.collegeId,
+        collegeEmail: data.collegeEmail,
+        courseName: data.courseName,
+        courseMode: data.courseMode,
+        courseDuration: data.courseDuration,
+      };
+      if (avatarUrl) payload.avatarUrl = avatarUrl;
+
+      await studentApi.updateProfile(payload);
 
       await refreshProfile();
       toast({
         title: 'Profile updated!',
         description: 'Your profile has been saved successfully.',
       });
-    } catch (error) {
-      console.error('Profile update error:', error);
+
+      // reset selected file after successful upload
+      setSelectedFile(null);
+    } catch (error: unknown) {
+      const msg = error instanceof Error ? error.message : String(error);
+      console.error('Profile update error:', msg);
+      if (msg.includes('Not authenticated')) {
+        toast({ variant: 'destructive', title: 'Not authenticated', description: 'Please sign in again.' });
+        // clear tokens and redirect
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('refresh_token');
+        navigate('/auth/login');
+        return;
+      }
       toast({
         variant: 'destructive',
         title: 'Error',
-        description: 'Failed to update profile',
+        description: msg || 'Failed to update profile',
       });
     } finally {
       setIsSaving(false);
@@ -179,6 +226,7 @@ export default function ProfilePage() {
         });
         return;
       }
+      setSelectedFile(file);
       const reader = new FileReader();
       reader.onloadend = () => {
         setProfilePhoto(reader.result as string);
@@ -267,12 +315,18 @@ export default function ProfilePage() {
           <CardDescription>Upload a professional photo for your profile</CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="flex items-center gap-6">
+          <div className="flex flex-col sm:flex-row items-center gap-6">
             <div className="relative">
               <div className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-full bg-primary/10">
                 {profilePhoto ? (
                   <img
-                    src={profilePhoto}
+                    src={
+                      profilePhoto.startsWith('data:')
+                        ? profilePhoto
+                        : profilePhoto.startsWith('http')
+                        ? profilePhoto
+                        : `${import.meta.env.VITE_API_URL || 'http://localhost:5001'}${profilePhoto}`
+                    }
                     alt="Profile"
                     className="h-full w-full object-cover"
                   />
@@ -300,6 +354,11 @@ export default function ProfilePage() {
               <p className="mt-1 text-xs text-muted-foreground">
                 JPG, PNG or GIF. Max 2MB.
               </p>
+              {selectedFile && (
+                <p className="mt-1 text-xs text-muted-foreground">
+                  Selected: <span className="font-medium">{selectedFile.name}</span> ({selectedFile.type || 'unknown'})
+                </p>
+              )}
             </div>
           </div>
         </CardContent>
@@ -307,7 +366,15 @@ export default function ProfilePage() {
 
       {/* Profile Form */}
       <Form {...profileForm}>
-        <form onSubmit={profileForm.handleSubmit(onProfileSubmit)}>
+        <form onSubmit={profileForm.handleSubmit(onProfileSubmit, (errors) => {
+            const firstKey = Object.keys(errors)[0];
+            const first = firstKey ? (errors as any)[firstKey] : null;
+            toast({
+              variant: 'destructive',
+              title: 'Validation error',
+              description: first?.message || 'Please fix the form errors before saving.',
+            });
+          })}>
           <Tabs defaultValue="personal" className="space-y-6">
             <TabsList className="grid w-full grid-cols-2">
               <TabsTrigger value="personal">Personal Info</TabsTrigger>
@@ -428,6 +495,60 @@ export default function ProfilePage() {
                       )}
                     />
                   </div>
+
+                  <CardContent className="space-y-4">
+                    <FormField
+                      control={profileForm.control}
+                      name="courseName"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Course Name</FormLabel>
+                          <FormControl>
+                            <Input {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <div className="grid gap-4 md:grid-cols-2">
+                      <FormField
+                        control={profileForm.control}
+                        name="courseMode"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Course Mode</FormLabel>
+                            <FormControl>
+                              <select {...field} className="w-full border rounded px-3 py-2">
+                                <option value="">Select mode</option>
+                                <option value="online">Online</option>
+                                <option value="offline">Offline</option>
+                              </select>
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={profileForm.control}
+                        name="courseDuration"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Course Duration</FormLabel>
+                            <FormControl>
+                              <select {...field} className="w-full border rounded px-3 py-2">
+                                <option value="">Select duration</option>
+                                <option value="long">Long Term</option>
+                                <option value="short">Short Term</option>
+                              </select>
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+                  </CardContent>
                 </CardContent>
               </Card>
             </TabsContent>

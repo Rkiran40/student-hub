@@ -47,3 +47,9 @@ Build the app and deploy the static output (`dist/`) to your hosting provider (V
 ## Can I connect a custom domain?
 
 Yes — configure your hosting provider to point your domain to the deployed app following their docs.
+
+## Responsive updates ✅
+
+Short note: I applied mobile-first responsive improvements that preserve the existing desktop UI but improve layouts on small screens. Changes include stacked form fields on mobile, responsive grid breakpoints, full-width action buttons on small screens, and table wrappers for horizontal scrolling.
+
+Files updated (frontend): `src/pages/auth/SignupPage.tsx`, `src/pages/student/ProfilePage.tsx`, `src/pages/student/FeedbackPage.tsx`, `src/pages/admin/FeedbacksPage.tsx`, `src/pages/admin/StudentsPage.tsx`.

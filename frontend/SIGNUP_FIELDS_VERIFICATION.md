@@ -25,9 +25,12 @@
 | Pincode | `pincode` | `pincode` | `profiles.pincode` | ✅ **FIXED** - Now stored |
 | College Email | `collegeEmail` | `college_email` | `profiles.college_email` | ✅ Stored |
 
-### Step 3: Password
+### Step 3: Course & Password
 | Form Field | Frontend Name | Backend Field | Database Table | Status |
 |------------|---------------|---------------|----------------|--------|
+| Course Name | `courseName` | `course_name` | `profiles.course_name` | ✅ Stored |
+| Course Mode | `courseMode` | `course_mode` | `profiles.course_mode` | ✅ Stored (online/offline) |
+| Course Duration | `courseDuration` | `course_duration` | `profiles.course_duration` | ✅ Stored (long/short) |
 | Password | `password` | `password_hash` | `users.password_hash` | ✅ Stored (hashed) |
 | Confirm Password | `confirmPassword` | - | - | ✅ Validation only (not stored) |
 

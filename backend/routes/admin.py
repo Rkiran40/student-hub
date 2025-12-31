@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify, current_app
 import os
 from ..db import db
-from ..models import Profile, DailyUpload, User
+from ..models import Profile, DailyUpload, User, Feedback
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from sqlalchemy.exc import IntegrityError
 
@@ -25,8 +25,22 @@ def admin_only(fn):
 def get_students():
     try:
         profiles = Profile.query.order_by(Profile.created_at.desc()).all()
-        result = [
-            {
+        result = []
+        uploads_root = current_app.config.get('UPLOAD_FOLDER')
+        for p in profiles:
+            avatar_url = p.avatar_url
+            try:
+                if avatar_url and not (avatar_url.startswith('data:') or avatar_url.startswith('http') or avatar_url.startswith('/uploads/')):
+                    # if it's stored as an absolute path, make it a predictable URL like /uploads/<rel>
+                    import os
+                    rel = os.path.relpath(avatar_url, uploads_root)
+                    rel = rel.replace('\\', '/')
+                    avatar_url = f"/uploads/{rel}"
+            except Exception:
+                # fallback to raw avatar_url
+                pass
+
+            result.append({
                 'id': p.id,
                 'user_id': p.user_id,
                 'username': p.username,
@@ -38,10 +52,13 @@ def get_students():
                 'city': p.city,
                 'pincode': p.pincode,
                 'college_email': p.college_email,
+                'course_name': p.course_name,
+                'course_mode': p.course_mode,
+                'course_duration': p.course_duration,
+                'avatar_url': avatar_url,
                 'status': p.status,
                 'created_at': p.created_at.isoformat() if p.created_at else None
-            } for p in profiles
-        ]
+            })
         return jsonify(result)
     except Exception as e:
         return jsonify({'success': False, 'message': f'Failed to fetch students: {str(e)}'}), 500
@@ -177,6 +194,152 @@ def update_upload_status(upload_id):
         db.session.rollback()
         return jsonify({'success': False, 'message': f'Failed to update upload status: {str(e)}'}), 500
 
+
+# Feedback management
+@admin_bp.route('/feedback', methods=['GET'])
+@jwt_required()
+@admin_only
+def list_feedback():
+    try:
+        # filters
+        category = request.args.get('category')
+        rating = request.args.get('rating')
+        status = request.args.get('status')
+        start = request.args.get('start')
+        end = request.args.get('end')
+
+        q = Feedback.query
+        if category:
+            q = q.filter_by(category=category)
+        if rating:
+            try:
+                q = q.filter_by(rating=int(rating))
+            except Exception:
+                pass
+        if status:
+            q = q.filter_by(status=status)
+        if start:
+            try:
+                from datetime import datetime
+                s = datetime.fromisoformat(start)
+                q = q.filter(Feedback.created_at >= s)
+            except Exception:
+                pass
+        if end:
+            try:
+                from datetime import datetime
+                e = datetime.fromisoformat(end)
+                q = q.filter(Feedback.created_at <= e)
+            except Exception:
+                pass
+        fbs = q.order_by(Feedback.created_at.desc()).all()
+        result = []
+        for f in fbs:
+            profile = Profile.query.filter_by(user_id=f.user_id).first()
+            attachments = []
+            try:
+                import json
+                attachments = json.loads(f.attachments) if f.attachments else []
+            except Exception:
+                attachments = []
+            result.append({
+                'id': f.id,
+                'user_id': f.user_id,
+                'student_name': profile.full_name if profile else None,
+                'student_email': profile.email if profile else None,
+                'category': f.category,
+                'subject': f.subject,
+                'message': f.message,
+                'rating': f.rating,
+                'attachments': attachments,
+                'status': f.status,
+                'admin_response': f.admin_response,
+                'responded_by': f.responded_by,
+                'responded_at': f.responded_at.isoformat() if f.responded_at else None,
+                'created_at': f.created_at.isoformat() if f.created_at else None,
+            })
+        return jsonify(result)
+    except Exception as e:
+        return jsonify({'success': False, 'message': f'Failed to list feedback: {str(e)}'}), 500
+
+
+@admin_bp.route('/feedback/<feedback_id>', methods=['GET'])
+@jwt_required()
+@admin_only
+def get_feedback(feedback_id):
+    try:
+        f = Feedback.query.get(feedback_id)
+        if not f:
+            return jsonify({'success': False, 'message': 'Feedback not found'}), 404
+        profile = Profile.query.filter_by(user_id=f.user_id).first()
+        import json
+        attachments = json.loads(f.attachments) if f.attachments else []
+        return jsonify({
+            'id': f.id,
+            'user_id': f.user_id,
+            'student_name': profile.full_name if profile else None,
+            'student_email': profile.email if profile else None,
+            'category': f.category,
+            'subject': f.subject,
+            'message': f.message,
+            'rating': f.rating,
+            'attachments': attachments,
+            'status': f.status,
+            'admin_response': f.admin_response,
+            'responded_by': f.responded_by,
+            'responded_at': f.responded_at.isoformat() if f.responded_at else None,
+            'created_at': f.created_at.isoformat() if f.created_at else None,
+        })
+    except Exception as e:
+        return jsonify({'success': False, 'message': f'Failed to fetch feedback: {str(e)}'}), 500
+
+
+@admin_bp.route('/feedback/<feedback_id>/response', methods=['POST'])
+@jwt_required()
+@admin_only
+def respond_feedback(feedback_id):
+    try:
+        data = request.get_json() or {}
+        response = data.get('response')
+        status = data.get('status')
+        if not response and not status:
+            return jsonify({'success': False, 'message': 'response or status required'}), 400
+        f = Feedback.query.get(feedback_id)
+        if not f:
+            return jsonify({'success': False, 'message': 'Feedback not found'}), 404
+        if response:
+            f.admin_response = response
+            f.responded_by = get_jwt_identity()
+            f.responded_at = __import__('datetime').datetime.utcnow()
+        if status:
+            if status not in ('in_review', 'resolved', 'rejected', 'submitted'):
+                return jsonify({'success': False, 'message': 'Invalid status'}), 400
+            f.status = status
+        db.session.commit()
+        return jsonify({'success': True, 'message': 'Feedback updated'})
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'success': False, 'message': f'Failed to update feedback: {str(e)}'}), 500
+
+
+@admin_bp.route('/feedback/<feedback_id>/status', methods=['POST'])
+@jwt_required()
+@admin_only
+def update_feedback_status(feedback_id):
+    try:
+        data = request.get_json() or {}
+        status = data.get('status')
+        if status not in ('in_review', 'resolved', 'rejected', 'submitted'):
+            return jsonify({'success': False, 'message': 'Invalid status'}), 400
+        f = Feedback.query.get(feedback_id)
+        if not f:
+            return jsonify({'success': False, 'message': 'Feedback not found'}), 404
+        f.status = status
+        db.session.commit()
+        return jsonify({'success': True, 'message': f'Feedback status set to {status}'})
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'success': False, 'message': f'Failed to update feedback status: {str(e)}'}), 500
 @admin_bp.route('/students/<profile_id>', methods=['DELETE'])
 @jwt_required()
 @admin_only

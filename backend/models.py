@@ -26,6 +26,9 @@ class Profile(db.Model):
     city = db.Column(db.String, nullable=True)
     pincode = db.Column(db.String, nullable=True)
     college_email = db.Column(db.String, nullable=True)
+    course_name = db.Column(db.String, nullable=True)
+    course_mode = db.Column(db.String, nullable=True)
+    course_duration = db.Column(db.String, nullable=True)
     status = db.Column(db.String, default='pending')
     avatar_url = db.Column(db.String, nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
@@ -46,3 +49,20 @@ class DailyUpload(db.Model):
     reviewed_by = db.Column(db.String, nullable=True)
     reviewed_at = db.Column(db.DateTime, nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+class Feedback(db.Model):
+    __tablename__ = 'feedbacks'
+    id = db.Column(db.String, primary_key=True, default=lambda: str(uuid.uuid4()))
+    user_id = db.Column(db.String, db.ForeignKey('users.id'), nullable=False)
+    category = db.Column(db.String, nullable=False)  # e.g., Training, Platform, Mentor, Support, Course Content, Other
+    subject = db.Column(db.String, nullable=False)
+    message = db.Column(db.String, nullable=False)
+    # Allow fractional ratings (e.g., 4.5)
+    rating = db.Column(db.Float, nullable=True)
+    attachments = db.Column(db.Text, nullable=True)  # JSON-encoded list of file URLs
+    status = db.Column(db.String, default='submitted')  # submitted, in_review, resolved, rejected
+    admin_response = db.Column(db.String, nullable=True)
+    responded_by = db.Column(db.String, nullable=True)
+    responded_at = db.Column(db.DateTime, nullable=True)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)

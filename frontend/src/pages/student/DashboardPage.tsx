@@ -59,13 +59,40 @@ export default function DashboardPage() {
   return (
     <div className="space-y-8">
       {/* Header */}
-      <div>
-        <h1 className="text-3xl font-bold text-foreground">
-          Welcome back, {user?.profile?.full_name?.split(' ')[0] || 'Student'}!
-        </h1>
-        <p className="mt-1 text-muted-foreground">
-          Here's an overview of your daily work submissions
-        </p>
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-3xl font-bold text-foreground">
+            Welcome back, {user?.profile?.full_name?.split(' ')[0] || 'Student'}!
+          </h1>
+          <p className="mt-1 text-muted-foreground">
+            Here's an overview of your daily work submissions
+          </p>
+        </div>
+        <div className="flex items-center gap-4">
+          <div className="hidden sm:flex items-center gap-3">
+            <div className="h-14 w-14 rounded-full overflow-hidden bg-primary/10">
+              {user?.profile?.avatar_url ? (
+                <img
+                  src={
+                    user.profile.avatar_url.startsWith('data:')
+                      ? user.profile.avatar_url
+                      : user.profile.avatar_url.startsWith('http')
+                      ? user.profile.avatar_url
+                      : `${import.meta.env.VITE_API_URL || 'http://localhost:5001'}${user.profile.avatar_url}`
+                  }
+                  alt="Profile"
+                  className="h-full w-full object-cover"
+                />
+              ) : (
+                <User className="h-8 w-8 text-primary m-3" />
+              )}
+            </div>
+            <div className="text-right hidden sm:block">
+              <p className="text-sm text-muted-foreground">{user?.profile?.full_name}</p>
+              <p className="text-xs text-muted-foreground">{user?.profile?.username ? `@${user.profile.username}` : user?.email}</p>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Stats Cards */}
@@ -191,7 +218,7 @@ export default function DashboardPage() {
                         <p className="text-xs text-muted-foreground">
                           {upload.upload_date ? new Date(upload.upload_date).toLocaleDateString() : 'N/A'}
                         </p>
-                        <p>{getStatusBadge(upload.status)}</p>
+                        <div className="mt-1">{getStatusBadge(upload.status)}</div>
                       </div>
                     </div>
                     

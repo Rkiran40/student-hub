@@ -11,6 +11,9 @@ interface Profile {
   college_name: string | null;
   college_id: string | null;
   college_email: string | null;
+  course_name?: string | null;
+  course_mode?: 'online' | 'offline' | null;
+  course_duration?: 'long' | 'short' | null;
   username: string | null;
   avatar_url: string | null;
   status: 'pending' | 'active' | 'suspended';
@@ -39,7 +42,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 const INACTIVITY_TIMEOUT = 15 * 60 * 1000; // 15 minutes
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001';
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<AuthUser | null>(null);
@@ -134,10 +137,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const signIn = useCallback(async (username: string, password: string) => {
     try {
+      // If the user entered an email in the username field, send it as `email`
+      const payload: Record<string, string> = username.includes('@')
+        ? { email: username, password }
+        : { username, password };
+
       const res = await fetch(`${API_URL}/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify(payload),
       });
       
       // Check if response is ok before parsing JSON

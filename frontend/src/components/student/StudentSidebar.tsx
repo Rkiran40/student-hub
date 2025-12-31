@@ -6,7 +6,8 @@ import {
   History, 
   LogOut,
   GraduationCap,
-  X
+  X,
+  MessageSquare
 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
@@ -17,6 +18,8 @@ const navItems = [
   { to: '/student/profile', icon: User, label: 'My Profile' },
   { to: '/student/upload', icon: Upload, label: 'Upload Work' },
   { to: '/student/history', icon: History, label: 'Upload History' },
+  { to: '/student/feedback', icon: MessageSquare, label: 'Feedback' },
+  { to: '/student/feedback/history', icon: History, label: 'Feedback History' },
 ];
 
 interface StudentSidebarProps {
@@ -78,8 +81,23 @@ export function StudentSidebar({ isOpen = true, onClose }: StudentSidebarProps) 
           {/* User Info */}
           <div className="border-b border-border p-4">
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
-                <User className="h-5 w-5 text-primary" />
+              {/* Avatar or fallback icon */}
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 overflow-hidden">
+                {user?.profile?.avatar_url ? (
+                  <img
+                    src={
+                      user.profile.avatar_url.startsWith('data:')
+                        ? user.profile.avatar_url
+                        : user.profile.avatar_url.startsWith('http')
+                        ? user.profile.avatar_url
+                        : `${import.meta.env.VITE_API_URL || 'http://localhost:5001'}${user.profile.avatar_url}`
+                    }
+                    alt={user.profile.full_name || 'Profile'}
+                    className="h-full w-full object-cover"
+                  />
+                ) : (
+                  <User className="h-5 w-5 text-primary" />
+                )}
               </div>
               <div className="flex-1 overflow-hidden">
                 <p className="truncate text-sm font-medium text-foreground">
@@ -98,6 +116,7 @@ export function StudentSidebar({ isOpen = true, onClose }: StudentSidebarProps) 
               <NavLink
                 key={item.to}
                 to={item.to}
+                end={item.to === '/student/feedback'}
                 onClick={handleNavClick}
                 className={({ isActive }) =>
                   cn(

@@ -17,10 +17,13 @@ import StudentDashboardPage from "./pages/student/DashboardPage";
 import ProfilePage from "./pages/student/ProfilePage";
 import UploadPage from "./pages/student/UploadPage";
 import HistoryPage from "./pages/student/HistoryPage";
+import FeedbackPage from "./pages/student/FeedbackPage";
+import FeedbackHistoryPage from "./pages/student/FeedbackHistoryPage";
 import { AdminLayout } from "./components/admin/AdminLayout";
 import AdminDashboardPage from "./pages/admin/DashboardPage";
 import StudentsPage from "./pages/admin/StudentsPage";
 import UploadsPage from "./pages/admin/UploadsPage";
+import FeedbacksPage from "./pages/admin/FeedbacksPage";
 
 const queryClient = new QueryClient();
 
@@ -44,11 +47,14 @@ const App = () => (
               <Route path="profile" element={<ProfilePage />} />
               <Route path="upload" element={<UploadPage />} />
               <Route path="history" element={<HistoryPage />} />
+              <Route path="feedback" element={<FeedbackPage />} />
+              <Route path="feedback/history" element={<FeedbackHistoryPage />} />
             </Route>
             <Route path="/admin" element={<AdminLayout />}>
               <Route path="dashboard" element={<AdminDashboardPage />} />
               <Route path="students" element={<StudentsPage />} />
               <Route path="uploads" element={<UploadsPage />} />
+              <Route path="feedbacks" element={<FeedbacksPage />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>

@@ -19,6 +19,9 @@ def signup():
     city = data.get('city')
     pincode = data.get('pincode')
     college_email = data.get('college_email')
+    course_name = data.get('course_name')
+    course_mode = data.get('course_mode')
+    course_duration = data.get('course_duration')
 
     if not email or not password or not full_name:
         return jsonify({'success': False, 'message': 'email, password, and full_name are required'}), 400
@@ -38,7 +41,10 @@ def signup():
             college_id=college_id,
             city=city,
             pincode=pincode,
-            college_email=college_email
+            college_email=college_email,
+            course_name=course_name,
+            course_mode=course_mode,
+            course_duration=course_duration
         )
         db.session.add(profile)
         db.session.commit()
@@ -114,12 +120,31 @@ def me():
     if not user:
         return jsonify({'success': False, 'message': 'User not found'}), 404
     profile = user.profile
-    return jsonify({'success': True, 'user': {'id': user.id, 'email': user.email, 'role': user.role, 'profile': {
-        'id': profile.id if profile else None,
-        'username': profile.username if profile else None,
-        'full_name': profile.full_name if profile else None,
-        'status': profile.status if profile else 'pending'
-    }}})
+    # Return full profile fields so frontend can populate the profile form
+    return jsonify({'success': True, 'user': {
+        'id': user.id,
+        'email': user.email,
+        'role': user.role,
+        'profile': {
+            'id': profile.id if profile else None,
+            'username': profile.username if profile else None,
+            'full_name': profile.full_name if profile else None,
+            'email': profile.email if profile else None,
+            'contact_number': profile.contact_number if profile else None,
+            'college_name': profile.college_name if profile else None,
+            'college_id': profile.college_id if profile else None,
+            'city': profile.city if profile else None,
+            'pincode': profile.pincode if profile else None,
+            'college_email': profile.college_email if profile else None,
+            'course_name': profile.course_name if profile else None,
+            'course_mode': profile.course_mode if profile else None,
+            'course_duration': profile.course_duration if profile else None,
+            'avatar_url': profile.avatar_url if profile else None,
+            'status': profile.status if profile else 'pending',
+            'created_at': profile.created_at.isoformat() if profile and profile.created_at else None,
+            'updated_at': profile.updated_at.isoformat() if profile and profile.updated_at else None,
+        }
+    }})
 
 @auth_bp.route('/refresh', methods=['POST'])
 @jwt_required(refresh=True)

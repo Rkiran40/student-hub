@@ -15,6 +15,7 @@ const navItems = [
   { to: '/admin/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
   { to: '/admin/students', icon: Users, label: 'Students' },
   { to: '/admin/uploads', icon: FileText, label: 'Uploads' },
+  { to: '/admin/feedbacks', icon: FileText, label: 'Feedback' },
 ];
 
 interface AdminSidebarProps {
@@ -76,8 +77,27 @@ export function AdminSidebar({ isOpen = true, onClose }: AdminSidebarProps) {
           {/* User Info */}
           <div className="border-b border-border p-4">
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-destructive/10">
-                <Shield className="h-5 w-5 text-destructive" />
+              {/* <div className="flex h-10 w-10 items-center justify-center rounded-full bg-destructive/10 overflow-hidden">
+                {user?.profile?.avatar_url ? (
+                  <img
+                    src={
+                      user.profile.avatar_url.startsWith('data:')
+                        ? user.profile.avatar_url
+                        : user.profile.avatar_url.startsWith('http')
+                        ? user.profile.avatar_url
+                        : `${import.meta.env.VITE_API_URL || 'http://localhost:5001'}${user.profile.avatar_url}`
+                    }
+                    alt={user.profile.full_name || 'Admin'}
+                    className="h-full w-full object-cover"
+                  />
+                ) : (
+                  <Shield className="h-5 w-5 text-destructive" />
+                )}
+              </div> */}
+              <div>
+                <div className="h-10 w-10 rounded-full bg-destructive/10 flex items-center justify-center">
+                  <span className='font-weight:bolder'>A</span>
+                </div>
               </div>
               <div className="flex-1 overflow-hidden">
                 <p className="truncate text-sm font-medium text-foreground">

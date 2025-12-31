@@ -101,7 +101,8 @@ export default function StudentsPage() {
       filtered = filtered.filter((student) =>
         student.full_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         student.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        student.username?.toLowerCase().includes(searchQuery.toLowerCase())
+        student.username?.toLowerCase().includes(searchQuery.toLowerCase())||
+        student.college_name?.toLowerCase().includes(searchQuery.toLowerCase())
       );
     }
 
@@ -343,7 +344,7 @@ export default function StudentsPage() {
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <Input
-                placeholder="Search by name, email, or username..."
+                placeholder="Search by name, email,username, or college name..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="pl-10"
@@ -441,11 +442,11 @@ export default function StudentsPage() {
                       </TableCell>
                       <TableCell>{getStatusBadge(student.status)}</TableCell>
                       <TableCell className="text-right">
-                        <div className="flex justify-end gap-2">
+                        <div className="flex flex-col sm:flex-row gap-2 items-stretch sm:items-center">
                           {student.status === 'pending' && (
                             <Button
                               size="sm"
-                              className="bg-green-600 hover:bg-green-700"
+                              className="w-full sm:w-auto bg-green-600 hover:bg-green-700"
                               onClick={() => handleApproveClick(student)}
                               disabled={isProcessing}
                             >
@@ -457,7 +458,7 @@ export default function StudentsPage() {
                             <Button
                               variant="outline"
                               size="sm"
-                              className="border-yellow-500 text-yellow-600 hover:bg-yellow-50"
+                              className="w-full sm:w-auto border-yellow-500 text-yellow-600 hover:bg-yellow-50"
                               onClick={() => handleSuspend(student)}
                               disabled={isProcessing}
                             >
@@ -469,6 +470,7 @@ export default function StudentsPage() {
                             <Button
                               variant="outline"
                               size="sm"
+                              className="w-full sm:w-auto"
                               onClick={() => handleActivate(student)}
                               disabled={isProcessing}
                             >
@@ -476,12 +478,12 @@ export default function StudentsPage() {
                               Activate
                             </Button>
                           )}
-                          <Button variant="ghost" size="sm" onClick={() => handleViewClick(student)}>
+                          <Button variant="ghost" size="sm" className="w-full sm:w-auto" onClick={() => handleViewClick(student)}>
                             <Eye className="h-4 w-4" />
                           </Button>
 
                           {/* More actions */}
-                          <DropdownMenu>
+                          {/* <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                               <Button variant="ghost" size="sm">
                                 <MoreHorizontal className="h-4 w-4" />
@@ -496,7 +498,7 @@ export default function StudentsPage() {
                               <DropdownMenuSeparator />
                               <DropdownMenuItem className="text-destructive" onSelect={() => handleDeleteClick(student)}>Delete</DropdownMenuItem>
                             </DropdownMenuContent>
-                          </DropdownMenu>
+                          </DropdownMenu> */}
                         </div>
                       </TableCell>
                     </TableRow>
